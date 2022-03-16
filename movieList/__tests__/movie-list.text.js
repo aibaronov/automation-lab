@@ -1,6 +1,6 @@
 const {Builder, Capabilities} = require('selenium-webdriver')
 
-const {addMovie, checkHeader} = require('../functions/movieFunctions')
+const {addMovie, checkHeader, deleteMovie, crossOffMovie} = require('../functions/movieFunctions')
 
 require('chromedriver')
 
@@ -19,12 +19,17 @@ test('Adds a movie to the list',async () =>{
     await driver.sleep(5000)
 })
 
-test('Deletes a movie from the list', async () => {
-    await deleteMovie(driver)
-    await driver.sleep(5000)
-})
+
 
 test("The header for the page should say 'Movie List'", async() =>{
     await checkHeader(driver)
+    await driver.sleep(5000)
+})
+test("Checks to see if movie is crossed off", async() => {
+    await crossOffMovie(driver)
+    await driver.sleep(5000)
+})
+test('Deletes a movie from the list', async () => {
+    await deleteMovie(driver)
     await driver.sleep(5000)
 })
